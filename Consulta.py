@@ -1,6 +1,8 @@
 from datetime import datetime
 
+
 consultas = []
+
 
 def menu():
     while True:
@@ -9,11 +11,12 @@ def menu():
         print("2. Listar consultas")
         print("3. Cancelar consultas")
         print("4. Sair")
-        opcao = input("Escolha uma opção: ")  # Entrada do usuário
-        if opcao.isdigit() and 1 <= int(opcao) <= 4:  # Valida se é um número entre 1 e 4
-            return int(opcao)  # Retorna a opção válida
+        opcao = input("Escolha uma opção: ")  
+        if opcao.isdigit() and 1 <= int(opcao) <= 4:  
+            return int(opcao) 
         else:
             print("Opção inválida! Digite um número de 1 a 4.")
+
 
 def validar_data(data):
     try:
@@ -28,6 +31,7 @@ def validar_data(data):
         print("Formato de data inválido. Use DD/MM/AAAA (ex: 20/05/2025).")
         return False
 
+
 def validar_horario(horario):
     try:
         horario_obj = datetime.strptime(horario, "%H:%M").time()
@@ -41,6 +45,7 @@ def validar_horario(horario):
     except ValueError:
         print("Formato de horário inválido. Use HH:MM (ex: 14:00).")
         return False
+
 
 def agendar_consulta():
     print("\n--- Agendar Consulta ---")
@@ -61,6 +66,7 @@ def agendar_consulta():
     consultas.append(consulta)
     print("Consulta agendada com sucesso!")
 
+
 def listar_consultas():
     print("\n--- Consultas Agendadas ---")
     if len(consultas) == 0:
@@ -68,6 +74,7 @@ def listar_consultas():
     else:
         for i, consulta in enumerate(consultas, start=1):
             print(f"{i}. {consulta['paciente']} - {consulta['especialidade']} - {consulta['data']} - {consulta['horario']}")
+
 
 def cancelar_consulta():
     print("\n--- Cancelar Consulta ---")
@@ -85,6 +92,7 @@ def cancelar_consulta():
     else:
         print("Não há consultas para cancelar.")
 
+
 def executar_sistema():
     while True:
         opcao = menu()
@@ -97,5 +105,6 @@ def executar_sistema():
         elif opcao == 4:
             print("Saindo do sistema...")
             break
+
 
 executar_sistema()
